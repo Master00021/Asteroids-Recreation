@@ -7,7 +7,6 @@ namespace Game.Asteroids {
     internal sealed class GameplayMenu : MonoBehaviour {
 
         [SerializeField] private List<GameObject> _playerLifes;
-        [SerializeField] private GameObject _life;
         [SerializeField] private TextMeshProUGUI _score;
 
         private void OnEnable() {
