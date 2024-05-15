@@ -20,15 +20,15 @@ namespace Game.Asteroids {
 
         private void OnEnable() {
             GameLifeCycle.OnGameStart += StartWave;
-            Asteroid.OnDeath += CheckCurrentWave;
+            AsteroidDeathHandler.OnDeath += CheckCurrentWave;
         }
         
         private void OnDisable() {
             GameLifeCycle.OnGameStart -= StartWave;
-            Asteroid.OnDeath -= CheckCurrentWave;
+            AsteroidDeathHandler.OnDeath -= CheckCurrentWave;
         }
 
-        private void CheckCurrentWave(AudioClip _) {
+        private void CheckCurrentWave() {
             var currentAsteroids = FindObjectsOfType<Asteroid>();
             if (currentAsteroids.Length <= 1) {
                 OnWaveEnd?.Invoke();

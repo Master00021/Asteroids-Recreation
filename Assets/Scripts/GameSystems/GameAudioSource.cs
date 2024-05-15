@@ -8,12 +8,12 @@ namespace Game.Asteroids {
         [SerializeField] private AudioClip _enemyDeathSound;
 
         private void OnEnable() {
-            Asteroid.OnDeath += PlayAsteroidDeathSound;
+            AsteroidDeathHandler.OnPlayDeathSound += PlayAsteroidDeathSound;
             NormalEnemy.OnEnemyDeath += PlayEnemyDeathSound;
         }
 
         private void OnDisable() {
-            Asteroid.OnDeath -= PlayAsteroidDeathSound;
+            AsteroidDeathHandler.OnPlayDeathSound -= PlayAsteroidDeathSound;
             NormalEnemy.OnEnemyDeath -= PlayEnemyDeathSound;
         }
 

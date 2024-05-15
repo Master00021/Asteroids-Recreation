@@ -21,7 +21,7 @@ namespace Game.Asteroids {
             }
 
             if (other.TryGetComponent<IEnemy>(out var enemy)) {
-                enemy.SendScore();
+                //enemy.SendScore();
                 enemy.Death();
             }
 

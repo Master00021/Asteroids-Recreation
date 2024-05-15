@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 25941594488993382}
   - component: {fileID: 8967587245193197423}
   - component: {fileID: 6301694849476967348}
+  - component: {fileID: -1376813536474086248}
+  - component: {fileID: -1673615215454820865}
   m_Layer: 3
   m_Name: Medium Asteroid
   m_TagString: Asteroid
@@ -172,9 +174,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreToGive: 50
-  _asteroidType: 1
+--- !u!114 &-1376813536474086248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560721721508599532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1297c1de32371984dbfc26fc66ed9eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpeed: 1
+  _maxSpeed: 2.5
+--- !u!114 &-1673615215454820865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560721721508599532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740bd5183c079d34fbfcffcabe5fb33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _asteroidToBecome: {fileID: 5823875562228195451, guid: e24ba1a41e1452a43ba7170cc7d06265, type: 3}
   _deathParticles: {fileID: 8485656474370877246, guid: 5bcbc7ec5beece148abbfafa35bb64e7, type: 3}
-  _death: {fileID: 8300000, guid: 13d4ce09f98421341962a68b165561f1, type: 3}
-  _minSpeed: 0.5
-  _maxSpeed: 2.5
+  _deathSound: {fileID: 8300000, guid: 13d4ce09f98421341962a68b165561f1, type: 3}
+  _isSmallAsteroid: 0

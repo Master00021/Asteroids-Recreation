@@ -17,8 +17,9 @@ namespace Game.Asteroids {
                 other.GetComponent<PlayerController>().Death();
                 Destroy(gameObject);
             }
-            else if (other.CompareTag("Asteroid")) {
-                other.GetComponent<Asteroid>().Death();
+
+            if (other.TryGetComponent<IEnemy>(out var enemy)) {
+                enemy.Death();
                 Destroy(gameObject);
             }
         }
