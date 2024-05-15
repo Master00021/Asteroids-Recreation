@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Asteroids {
@@ -10,15 +9,11 @@ namespace Asteroids {
         [SerializeField] private float _speed;
 
         private void Start() {
-            StartCoroutine(CO_Bullet());
+            Destroy(gameObject, _lifeTime);
         }
 
-        private IEnumerator CO_Bullet() {
-            Destroy(gameObject, _lifeTime);
-            while (true) {
-                transform.position += transform.up * _speed * Time.deltaTime;
-                yield return null;
-            }
+        private void Update() {
+            transform.position += transform.up * _speed * Time.deltaTime;
         }
 
     }

@@ -23,7 +23,6 @@ namespace Asteroids {
             if (!other.CompareTag("Border") && !other.CompareTag("LateralBorder")) {
                 Destroy(gameObject);
             }
-
         }
 
     }

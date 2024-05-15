@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Asteroids {
@@ -13,15 +12,10 @@ namespace Asteroids {
 
         protected virtual void Start() {
             _speed = Random.Range(_minSpeed, _maxSpeed);
-
-            StartCoroutine(CO_HorizontalMove());
         }
 
-        private IEnumerator CO_HorizontalMove() {
-            while (true) {
-                transform.position += _speed * Time.deltaTime * _moveDirection;
-                yield return null;
-            }
+        private void Update() {
+            transform.position += _speed * Time.deltaTime * _moveDirection;
         }
 
     }

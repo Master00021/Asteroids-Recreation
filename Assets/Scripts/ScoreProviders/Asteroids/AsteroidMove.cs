@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Asteroids {
@@ -7,21 +6,18 @@ namespace Asteroids {
         
         [SerializeField] private float _minSpeed;
         [SerializeField] private float _maxSpeed;
+
+        private float _speed;
         
         private void Start() {
-            StartCoroutine(CO_Movement());
+            float randomRotation = Random.Range(1.0f, 360.0f);
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, randomRotation);
+
+            _speed = Random.Range(_minSpeed, _maxSpeed);
         }
 
-        private IEnumerator CO_Movement() {
-            var randomRotation = Random.Range(1.0f, 360.0f);
-            transform.rotation = Quaternion.Euler(0.0f, 0.0f, randomRotation);
-            var speed = Random.Range(_minSpeed, _maxSpeed);
-
-            while (true) {
-                transform.position += transform.up * speed * Time.deltaTime;
-
-                yield return null;
-            }
+        private void Update() {
+            transform.position += transform.up * _speed * Time.deltaTime;
         }
 
     }
