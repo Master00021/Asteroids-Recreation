@@ -305,8 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269e8390e9fdd404d8839cc40b418fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathParticles: {fileID: 8485656474370877246, guid: 5bcbc7ec5beece148abbfafa35bb64e7, type: 3}
   _scoreToGive: 200
+  _deathParticles: {fileID: 8485656474370877246, guid: 5bcbc7ec5beece148abbfafa35bb64e7, type: 3}
 --- !u!114 &1384185158928353388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,8 +338,8 @@ MonoBehaviour:
   _pivot: {fileID: 5384232984636034562}
   _timeToAttack: 0.5
   _rotationSpeed: 75
-  _minRotationDirectionTime: 0
-  _maxRotationDirectionTime: 0
+  _minRotationDirectionTime: 1
+  _maxRotationDirectionTime: 5
 --- !u!114 &1150695941219198951
 MonoBehaviour:
   m_ObjectHideFlags: 0

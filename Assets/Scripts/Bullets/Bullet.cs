@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
+    [RequireComponent(typeof(Rigidbody2D))]
     internal class Bullet : MonoBehaviour {
         
         [SerializeField] private float _lifeTime;

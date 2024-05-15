@@ -2,16 +2,16 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
-    public class PlayerSpawner : MonoBehaviour {
+    internal sealed class PlayerSpawner : MonoBehaviour {
 
-        public static Action<GameObject> OnPlayerSpawned;
+        public static Action OnPlayerSpawned;
     
         [SerializeField] private GameObject _player;
-        [SerializeField] private Transform _center;
         [SerializeField] private LayerMask _asteroidsLayer;
         [SerializeField] private float _timeToRespawn;
+        [SerializeField] private float _spawnRadius = 2.0f;
 
         private GameObject _spawnedPlayer;
         private Quaternion _playerRotation;
@@ -33,6 +33,10 @@ namespace Game.Asteroids {
             StartCoroutine(CO_Spawn());
         }
 
+        private void GetPlayerRotation(Quaternion playerRotation) {
+            _playerRotation = playerRotation;
+        }
+
         private void StartRespawn() {
             StartCoroutine(CO_Spawn());
         }
@@ -40,29 +44,23 @@ namespace Game.Asteroids {
         private IEnumerator CO_Spawn() {
             yield return new WaitForSeconds(_timeToRespawn);
 
-            Collider2D hit = Physics2D.OverlapCircle(_center.position, 2.0f, _asteroidsLayer);
+            Collider2D hit = Physics2D.OverlapCircle(transform.position, _spawnRadius, _asteroidsLayer);
 
             while (hit) {
-                hit = Physics2D.OverlapCircle(_center.position, 1.5f, _asteroidsLayer);
-                yield return new WaitForSeconds(1.0f);
+                hit = Physics2D.OverlapCircle(transform.position, _spawnRadius, _asteroidsLayer);
+                yield return new WaitForSeconds(0.1f);
             }
 
             if (_spawnedPlayer == null) {
-                _spawnedPlayer = Instantiate(_player, _center.position, Quaternion.identity);
+                _spawnedPlayer = Instantiate(_player, transform.position, Quaternion.identity);
             }
             else {
-                _spawnedPlayer.transform.SetPositionAndRotation(_center.position, _playerRotation);
+                _spawnedPlayer.transform.SetPositionAndRotation(transform.position, _playerRotation);
             }
 
             _spawnedPlayer.SetActive(true);
-            OnPlayerSpawned?.Invoke(_spawnedPlayer);
-        }
-
-        private void GetPlayerRotation(Quaternion playerRotation) {
-            _playerRotation = playerRotation;
+            OnPlayerSpawned?.Invoke();
         }
 
     }
 }
-
-

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class GameOverMenu : MonoBehaviour {
 
@@ -11,7 +11,7 @@ namespace Game.Asteroids {
         [SerializeField] private GameObject _gameOver;
         [SerializeField] private float _timeForNextUI;
 
-        private Coroutine _waitForNextUI;
+        private Coroutine _coroutine;
 
         private void OnEnable() {
             PlayerData.OnGameOver += OnMenuEnter;
@@ -26,14 +26,14 @@ namespace Game.Asteroids {
         private void OnMenuEnter() {
             _gameOver.SetActive(true);
 
-            _waitForNextUI = StartCoroutine(CO_WaitForNextUI());
+            _coroutine = StartCoroutine(CO_WaitForNextUI());
         }
 
         private void OnMenuExit() {
             _gameOver.SetActive(false);
 
-            if (_waitForNextUI != null) {
-                StopCoroutine(_waitForNextUI);
+            if (_coroutine != null) {
+                StopCoroutine(_coroutine);
             }
         }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2982299836976587939}
   - component: {fileID: 6167331054801032521}
   m_Layer: 0
-  m_Name: Explosion Asteroid
+  m_Name: Asteroid Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

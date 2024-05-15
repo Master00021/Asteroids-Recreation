@@ -1,28 +1,29 @@
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class PlayerBullet : Bullet {
 
         public static Action<int> OnScoreSent;
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.TryGetComponent<ILiveEnemy>(out var liveEnemy)) {
-                liveEnemy.SendLive();
-            }
-
-            if (other.TryGetComponent<IEnemy>(out var enemy)) {
-                enemy.Death();
+            if (other.TryGetComponent<IGiveLive>(out var liveEnemy)) {
+                liveEnemy.GiveLive();
             }
 
             if (other.TryGetComponent<IScore>(out var score)) {
                 score.SendScore();
             }
 
-            if (!other.CompareTag("Border")) {
+            if (other.TryGetComponent<IKillable>(out var killable)) {
+                killable.Death();
+            }
+
+            if (!other.CompareTag("Border") && !other.CompareTag("LateralBorder")) {
                 Destroy(gameObject);
             }
+
         }
 
     }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal class EnemyMove : MonoBehaviour {
         

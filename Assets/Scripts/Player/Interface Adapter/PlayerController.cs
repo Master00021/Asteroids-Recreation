@@ -1,11 +1,8 @@
 using UnityEngine;
-using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class PlayerController : MonoBehaviour {
-
-        public static Action OnPlayerDeath;
 
         [SerializeField] private PlayerAttack _playerAttack;
         [SerializeField] private PlayerRotate _playerRotate;
@@ -33,11 +30,6 @@ namespace Game.Asteroids {
 
         private void Attack() {
             _playerAttack.Attack();
-        }
-
-        internal void Death() {
-            OnPlayerDeath?.Invoke();
-            gameObject.SetActive(false);
         }
 
     }

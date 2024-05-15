@@ -1,19 +1,20 @@
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
-    internal class Enemy : MonoBehaviour, IEnemy {
+    [RequireComponent(typeof(Rigidbody2D))]
+    internal class Enemy : ScoreProvider, IKillable, IScore {
 
         public static Action OnEnemyDeath;
-        public static Action<int> OnScoreSent;
 
         [SerializeField] private GameObject _deathParticles;
-        [SerializeField] private int _scoreToGive;
+
+        private void OnEnable() => GameLifeCycle.OnGameStop += Death;
+        private void OnDisable() => GameLifeCycle.OnGameStop -= Death;
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.CompareTag("Player")) {
-                other.GetComponent<PlayerController>().Death();
+            if (other.GetComponent<Player>()) {
                 Death();
             }
 

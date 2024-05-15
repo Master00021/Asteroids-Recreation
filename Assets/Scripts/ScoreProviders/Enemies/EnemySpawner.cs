@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class EnemySpawner : MonoBehaviour {
 
@@ -29,6 +29,10 @@ namespace Game.Asteroids {
 
         private void StartEnemySpawn() {
             _spawnEnemy = StartCoroutine(CO_SpawnEnemy());
+        }
+
+        private void StopSpawner() {
+            StopCoroutine(_spawnEnemy);
         }
 
         private IEnumerator CO_SpawnEnemy() {
@@ -65,10 +69,6 @@ namespace Game.Asteroids {
 
                 yield return null;
             }
-        }
-
-        private void StopSpawner() {
-            StopCoroutine(_spawnEnemy);
         }
 
     }

@@ -1,19 +1,20 @@
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
-    public class GameAudioSource : MonoBehaviour {
+    [RequireComponent(typeof(AudioSource))]
+    internal sealed class GameAudioSource : MonoBehaviour {
 
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _enemyDeathSound;
 
         private void OnEnable() {
-            AsteroidDeathHandler.OnPlayDeathSound += PlayAsteroidDeathSound;
+            Asteroid.OnPlayDeathSound += PlayAsteroidDeathSound;
             Enemy.OnEnemyDeath += PlayEnemyDeathSound;
         }
 
         private void OnDisable() {
-            AsteroidDeathHandler.OnPlayDeathSound -= PlayAsteroidDeathSound;
+            Asteroid.OnPlayDeathSound -= PlayAsteroidDeathSound;
             Enemy.OnEnemyDeath -= PlayEnemyDeathSound;
         }
 
@@ -27,4 +28,3 @@ namespace Game.Asteroids {
 
     }
 }
-

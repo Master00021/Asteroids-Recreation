@@ -1,12 +1,11 @@
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class PlayerData : MonoBehaviour {
 
         public static Action<int> OnScoreModified;
-        public static Action<int> OnLivesModified;
         public static Action OnLivesIncreased;
         public static Action OnLivesDecreased;
         public static Action OnGameOver;
@@ -18,12 +17,10 @@ namespace Game.Asteroids {
 
         private void OnEnable() {
             GameLifeCycle.OnGameStart += OnGameStart;
-            PlayerController.OnPlayerDeath += DecreaseLives;
+            Player.OnPlayerDeath += DecreaseLives;
 
-            Enemy.OnScoreSent += ModifyScore;
-            LiveEnemy.OnLiveSent += IncreaseLives;
-
-            Asteroid.OnScoreSent += ModifyScore;
+            LiveEnemy.OnGiveLive += IncreaseLives;
+            ScoreProvider.OnScoreSent += ModifyScore;
 
             _lives = _startLifes;
             _score = 0;
@@ -31,12 +28,10 @@ namespace Game.Asteroids {
 
         private void OnDisable() {
             GameLifeCycle.OnGameStart -= OnGameStart;
-            PlayerController.OnPlayerDeath -= DecreaseLives;
+            Player.OnPlayerDeath -= DecreaseLives;
 
-            Enemy.OnScoreSent -= ModifyScore;
-            LiveEnemy.OnLiveSent -= IncreaseLives;
-
-            Asteroid.OnScoreSent -= ModifyScore;
+            LiveEnemy.OnGiveLive -= IncreaseLives;
+            ScoreProvider.OnScoreSent -= ModifyScore;
         }
 
         private void OnGameStart() {
@@ -52,9 +47,8 @@ namespace Game.Asteroids {
 
         internal void IncreaseLives() {
             _lives++;
-
+            
             OnLivesIncreased?.Invoke();
-            OnLivesModified?.Invoke(_lives);
         }
 
         internal void DecreaseLives() {
@@ -66,7 +60,6 @@ namespace Game.Asteroids {
             }
 
             OnLivesDecreased?.Invoke();
-            OnLivesModified?.Invoke(_lives);
         }
 
         internal void ModifyScore(int score) {
@@ -77,5 +70,3 @@ namespace Game.Asteroids {
 
     }
 }
-
-

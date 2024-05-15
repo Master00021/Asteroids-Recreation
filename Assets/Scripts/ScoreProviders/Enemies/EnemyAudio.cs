@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class EnemyAudio : MonoBehaviour {
 

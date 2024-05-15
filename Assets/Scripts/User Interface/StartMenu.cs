@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Security;
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class StartMenu : MonoBehaviour {
     
@@ -11,7 +10,7 @@ namespace Game.Asteroids {
         [SerializeField] private GameObject _pushStart;
         [SerializeField] private float _timeToFlick;
 
-        private Coroutine _pushStartFlicker;
+        private Coroutine _coroutine;
 
         private void OnEnable() {
             GameLifeCycle.OnGameLoaded += OnMenuEnter;
@@ -28,16 +27,7 @@ namespace Game.Asteroids {
             _pushStart.SetActive(true);
             _tutorial.SetActive(true);
 
-            _pushStartFlicker = StartCoroutine(CO_PushStartFlicker());
-        }
-
-        private IEnumerator CO_PushStartFlicker() {
-            while (true) {
-                _pushStart.SetActive(true);
-                yield return new WaitForSeconds(_timeToFlick);
-                _pushStart.SetActive(false);
-                yield return new WaitForSeconds(_timeToFlick);
-            }
+            _coroutine = StartCoroutine(CO_PushStartFlicker());
         }
 
         private void OnMenuExit() {
@@ -45,7 +35,17 @@ namespace Game.Asteroids {
             _pushStart.SetActive(false);
             _tutorial.SetActive(false);
 
-            StopCoroutine(_pushStartFlicker);
+            StopCoroutine(_coroutine);
+        }
+
+        private IEnumerator CO_PushStartFlicker() {
+            while (true) {
+                _pushStart.SetActive(true);
+                yield return new WaitForSeconds(_timeToFlick);
+                
+                _pushStart.SetActive(false);
+                yield return new WaitForSeconds(_timeToFlick);
+            }
         }
 
     }

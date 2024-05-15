@@ -3,18 +3,18 @@ using UnityEngine;
 using System;
 using TMPro;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class ScoreMenu : MonoBehaviour {
 
         public static Action OnScoreShowed;
 
-        [SerializeField] private GameObject _yourScore;
-        [SerializeField] private GameObject _score;
-        [SerializeField] private GameObject _tapAnyKey;
+        [SerializeField] private TextMeshProUGUI _yourScore;
+        [SerializeField] private TextMeshProUGUI _score;
+        [SerializeField] private TextMeshProUGUI _tapAnyKey;
         [SerializeField] private float _timeToFlick;
 
-        private Coroutine _pushStartFlicker;
+        private Coroutine _coroutine;
         private int _finalScore;
 
         private void OnEnable() {
@@ -36,30 +36,31 @@ namespace Game.Asteroids {
         }
 
         private void OnMenuEnter() {
-            _yourScore.SetActive(true);
-            _score.SetActive(true);
+            _yourScore.gameObject.SetActive(true);
+            _score.gameObject.SetActive(true);
 
-            _score.GetComponent<TextMeshProUGUI>().text = _finalScore.ToString();
+            _score.text = _finalScore.ToString();
 
-            _pushStartFlicker = StartCoroutine(CO_PushStartFlicker());
+            _coroutine = StartCoroutine(CO_PushStartFlicker());
             OnScoreShowed?.Invoke();
         }
 
         private void OnMenuExit() {
-            _yourScore.SetActive(false);
-            _score.SetActive(false);
-            _tapAnyKey.SetActive(false);
+            _yourScore.gameObject.SetActive(false);
+            _score.gameObject.SetActive(false);
+            _tapAnyKey.gameObject.SetActive(false);
 
-            if (_pushStartFlicker != null) {
-                StopCoroutine(_pushStartFlicker);
+            if (_coroutine != null) {
+                StopCoroutine(_coroutine);
             }
         }
 
         private IEnumerator CO_PushStartFlicker() {
             while (true) {
-                _tapAnyKey.SetActive(true);
+                _tapAnyKey.gameObject.SetActive(true);
                 yield return new WaitForSeconds(_timeToFlick);
-                _tapAnyKey.SetActive(false);
+                
+                _tapAnyKey.gameObject.SetActive(false);
                 yield return new WaitForSeconds(_timeToFlick);
             }
         }

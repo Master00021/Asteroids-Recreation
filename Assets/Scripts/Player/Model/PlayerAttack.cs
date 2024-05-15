@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class PlayerAttack : MonoBehaviour {
 

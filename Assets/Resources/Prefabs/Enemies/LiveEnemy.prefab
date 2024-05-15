@@ -367,8 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a853557ff44e00040a2a4e2cf873e6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathParticles: {fileID: 8485656474370877246, guid: 5bcbc7ec5beece148abbfafa35bb64e7, type: 3}
   _scoreToGive: 1000
+  _deathParticles: {fileID: 8485656474370877246, guid: 5bcbc7ec5beece148abbfafa35bb64e7, type: 3}
 --- !u!114 &4863556861883511459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,8 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1158409213316564249}
-  _enemyMusic: {fileID: 8300000, guid: 21d8f4c453fa8d248ab019483a25b443, type: 3}
   _bulletSound: {fileID: 8300000, guid: bcae3b18b5b635f468045d8695ce296e, type: 3}
+  _enemyMusic: {fileID: 8300000, guid: 21d8f4c453fa8d248ab019483a25b443, type: 3}
 --- !u!114 &7201729506786711123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,8 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99872c6f26054df4385201cd90d448d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalEnemy: 0
-  _rigidbody: {fileID: 4592576207016603545}
   _minSpeed: 1
   _maxSpeed: 2
 --- !u!114 &5308122924166361553
@@ -412,10 +410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6fef1d8f11b0d4b9fe6e6ef3fee898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 50
-  _minTimeDirectionDuration: 1
-  _maxTimeDirectionDuration: 5
+  _bullet: {fileID: 7707139661779529434, guid: 68cf15d0e70516142b56d076377f1f88, type: 3}
   _bulletSpawn: {fileID: 2111950174337510670}
   _pivot: {fileID: 4152520806290590160}
   _timeToAttack: 0.35
-  _bullet: {fileID: 7707139661779529434, guid: 68cf15d0e70516142b56d076377f1f88, type: 3}
+  _rotationSpeed: 50
+  _minRotationDirectionTime: 1
+  _maxRotationDirectionTime: 5

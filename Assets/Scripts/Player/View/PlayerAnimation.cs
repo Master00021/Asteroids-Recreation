@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class PlayerAnimation : MonoBehaviour {
 
@@ -28,6 +28,10 @@ namespace Game.Asteroids {
             PlayerData.OnGameOver -= DeathAnimation;
         }
 
+        private void DeathAnimation() {
+            Instantiate(_deathParticles, transform.position, Quaternion.identity);
+        }
+
         public void Animate() {
             _animate = !_animate;
         }
@@ -44,10 +48,6 @@ namespace Game.Asteroids {
                 
                 yield return null;
             }
-        }
-
-        private void DeathAnimation() {
-            Instantiate(_deathParticles, transform.position, Quaternion.identity);
         }
 
     }

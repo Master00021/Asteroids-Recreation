@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game {
+namespace Asteroids {
 
     public enum BorderType {
         Up,
@@ -9,14 +9,14 @@ namespace Game {
         Left
     }
 
-    public class Border : MonoBehaviour {
+    internal sealed class Border : MonoBehaviour {
 
         [SerializeField] private BorderType _borderType;
         [SerializeField] private Transform _borderToTeleport;
         [SerializeField] private Vector3 _offset;
     
         private void OnTriggerEnter2D(Collider2D other) {
-            var newPosition = Vector3.zero;
+            Vector3 newPosition;
             if (_borderType == BorderType.Up || _borderType == BorderType.Down) {
                 newPosition = new Vector3(other.transform.position.x, _borderToTeleport.position.y);
             }
@@ -29,4 +29,3 @@ namespace Game {
     
     }
 }
-

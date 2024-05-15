@@ -2,7 +2,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class GameInput : MonoBehaviour, ShipInput.IAsteroidShipActions, ShipInput.IStartGameActions, ShipInput.IEndGameActions {
         
@@ -26,7 +26,7 @@ namespace Game.Asteroids {
             _shipInput.EndGame.SetCallbacks(this);
 
             ScoreMenu.OnScoreShowed += OnScoreMenu;
-            PlayerController.OnPlayerDeath += DisableCurrentInputMap;
+            Player.OnPlayerDeath += DisableCurrentInputMap;
             PlayerSpawner.OnPlayerSpawned += EnableCurrentInputMap;
         }
 
@@ -37,7 +37,7 @@ namespace Game.Asteroids {
             _shipInput = null;
 
             ScoreMenu.OnScoreShowed -= OnScoreMenu;
-            PlayerController.OnPlayerDeath -= DisableCurrentInputMap;
+            Player.OnPlayerDeath -= DisableCurrentInputMap;
             PlayerSpawner.OnPlayerSpawned -= EnableCurrentInputMap;
         }
 
@@ -91,7 +91,7 @@ namespace Game.Asteroids {
             }
         }
 
-        private void EnableCurrentInputMap(GameObject _) {
+        private void EnableCurrentInputMap() {
             if (!_shipInput.AsteroidShip.enabled) {
                 _shipInput.AsteroidShip.Enable();
             }
@@ -99,4 +99,3 @@ namespace Game.Asteroids {
 
     }
 }
-

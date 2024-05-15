@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class AsteroidWaves : MonoBehaviour {
 
@@ -20,12 +20,12 @@ namespace Game.Asteroids {
 
         private void OnEnable() {
             GameLifeCycle.OnGameStart += StartWave;
-            AsteroidDeathHandler.OnDeath += CheckCurrentWave;
+            Asteroid.OnAsteroidDeath += CheckCurrentWave;
         }
         
         private void OnDisable() {
             GameLifeCycle.OnGameStart -= StartWave;
-            AsteroidDeathHandler.OnDeath -= CheckCurrentWave;
+            Asteroid.OnAsteroidDeath -= CheckCurrentWave;
         }
 
         private void StartWave() {
@@ -62,7 +62,7 @@ namespace Game.Asteroids {
             if (_asteroidsToSpawn > _maxAsteroidsToSpawn) {
                 _asteroidsToSpawn = _maxAsteroidsToSpawn;
             }
-            
+
             OnWaveStart?.Invoke();
         }
 

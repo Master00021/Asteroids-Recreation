@@ -1,8 +1,7 @@
-using System.Collections;
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class PlayerRotate : MonoBehaviour {
 
@@ -16,30 +15,24 @@ namespace Game.Asteroids {
 
         private void OnEnable() {
             _rotate = false;
-            StartCoroutine(CO_Rotate());
         }
 
         private void OnDisable() {  
             OnPlayerDeath?.Invoke(_currentRotation);
         }
 
+        private void Update() {
+            if (_rotate) {
+                float rotationAmount = -_direction * _speed * Time.deltaTime;
+                transform.Rotate(Vector3.forward, rotationAmount);
+            }
+
+            _currentRotation = transform.rotation;
+        }
+
         public void IsRotating(float direction) {
             _direction = direction;
             _rotate = !_rotate;
-        }
-
-        private IEnumerator CO_Rotate() {
-            while (true) {
-                if (_rotate) {
-                    float rotationAmount = -_direction * _speed * Time.deltaTime;
-
-                    transform.Rotate(Vector3.forward, rotationAmount);
-                }
-
-                _currentRotation = transform.rotation;
-
-                yield return null;
-            }
         }
 
     }

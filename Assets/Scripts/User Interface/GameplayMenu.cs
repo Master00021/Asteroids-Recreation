@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class GameplayMenu : MonoBehaviour {
 
@@ -11,18 +11,22 @@ namespace Game.Asteroids {
 
         private void OnEnable() {
             GameLifeCycle.OnGameStart += ActivateMenu;
-            PlayerData.OnLivesModified += RefreshLives;
-            PlayerData.OnScoreModified += RefreshScore;
             PlayerData.OnGameOver += DeactivateMenu;
+        
+            PlayerData.OnLivesIncreased += IncreaseLives;
+            PlayerData.OnLivesDecreased += DecreaseLives;
+            PlayerData.OnScoreModified += RefreshScore;
 
             DeactivateMenu();
         }
 
         private void OnDisable() {
             GameLifeCycle.OnGameStart -= ActivateMenu;
-            PlayerData.OnLivesModified -= RefreshLives;
-            PlayerData.OnScoreModified -= RefreshScore;
             PlayerData.OnGameOver -= DeactivateMenu;
+            
+            PlayerData.OnLivesIncreased -= IncreaseLives;
+            PlayerData.OnLivesDecreased -= DecreaseLives;
+            PlayerData.OnScoreModified -= RefreshScore;
         }
 
         private void ActivateMenu() {
@@ -36,15 +40,20 @@ namespace Game.Asteroids {
             _score.gameObject.SetActive(false);
         }
 
-        private void RefreshLives(int playerLives) {
-            for (int currentLive = 0; currentLive < _playerLifes.Count; currentLive++) {
-                bool currentLiveActive = _playerLifes[currentLive].activeInHierarchy;
-
-                if (currentLiveActive && currentLive >= playerLives) {
-                    _playerLifes[currentLive].SetActive(false);
+        private void IncreaseLives() {
+            for (int i = 0; i < _playerLifes.Count; i++) {
+                if (!_playerLifes[i].activeInHierarchy) {
+                    _playerLifes[i].SetActive(true);
+                    return;
                 }
-                else if (!currentLiveActive && currentLive < playerLives) {
-                    _playerLifes[currentLive].SetActive(true);
+            }
+        }
+
+        private void DecreaseLives() {
+            for (int i = _playerLifes.Count - 1; i > 0; i--) {
+                if (_playerLifes[i].activeInHierarchy) {
+                    _playerLifes[i].SetActive(false);
+                    return;
                 }
             }
         }
@@ -60,4 +69,3 @@ namespace Game.Asteroids {
 
     }
 }
-

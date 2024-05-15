@@ -1,50 +1,50 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
+    [RequireComponent(typeof(AudioSource))]
     internal sealed class Music : MonoBehaviour {
 
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _beatOne;
         [SerializeField] private AudioClip _beatTwo;
 
-        private float _incrementValue;
         private bool _playMusic;
         
         private const float MINIMUM_TIME_BETWEEN_BEATS = 0.175f;
         private const float INITIAL_TIME_BETWEEN_BEATS = 0.6f;
         private const float MODIFIER_VALUE = 0.004f;
 
-        private Coroutine _music;
+        private Coroutine _coroutine;
 
         private void OnEnable() {
-            PlayerSpawner.OnPlayerSpawned += PlayMusic;
-            PlayerData.OnLivesDecreased += PauseMusic;
-            PlayerData.OnGameOver += StopMusic;
-
             AsteroidWaves.OnWaveStart += StartMusic;
             AsteroidWaves.OnWaveEnd += StopMusic;
+            PlayerData.OnGameOver += StopMusic;
+
+            PlayerSpawner.OnPlayerSpawned += PlayMusic;
+            PlayerData.OnLivesDecreased += PauseMusic;
         }
 
         private void OnDisable() {
-            PlayerSpawner.OnPlayerSpawned -= PlayMusic;
-            PlayerData.OnLivesDecreased -= PauseMusic;
-            PlayerData.OnGameOver -= StopMusic;
-            
             AsteroidWaves.OnWaveStart -= StartMusic;
             AsteroidWaves.OnWaveEnd -= StopMusic;
+            PlayerData.OnGameOver -= StopMusic;
+
+            PlayerSpawner.OnPlayerSpawned -= PlayMusic;
+            PlayerData.OnLivesDecreased -= PauseMusic;
         }
 
         private void StartMusic() {
-            _music = StartCoroutine(CO_GameMusic());
+            _coroutine = StartCoroutine(CO_GameMusic());
         }
 
         private void StopMusic() {
-            StopCoroutine(_music);
+            StopCoroutine(_coroutine);
         }
 
-        private void PlayMusic(GameObject _) {
+        private void PlayMusic() {
             _playMusic = true;
         }
 
@@ -54,12 +54,12 @@ namespace Game.Asteroids {
 
         private IEnumerator CO_GameMusic() {
             bool playBeatOne = true;
-            _incrementValue = 0.0f;
+            float incrementValue = 0.0f;
 
             while (true) {
                 if (_playMusic) {
-                    _incrementValue++;
-                    float timeBetweenBeats = (-MODIFIER_VALUE * _incrementValue) + INITIAL_TIME_BETWEEN_BEATS;
+                    incrementValue++;
+                    float timeBetweenBeats = (-MODIFIER_VALUE * incrementValue) + INITIAL_TIME_BETWEEN_BEATS;
 
                     if (timeBetweenBeats < MINIMUM_TIME_BETWEEN_BEATS) {
                         timeBetweenBeats = MINIMUM_TIME_BETWEEN_BEATS;
@@ -73,14 +73,13 @@ namespace Game.Asteroids {
                         _audioSource.PlayOneShot(_beatTwo);
                         playBeatOne = true;
                     }
+
                     yield return new WaitForSeconds(timeBetweenBeats);
                 }
-                else {
-                    yield return null;
-                }
+                
+                yield return null;
             }
         }
     
     }
 }
-

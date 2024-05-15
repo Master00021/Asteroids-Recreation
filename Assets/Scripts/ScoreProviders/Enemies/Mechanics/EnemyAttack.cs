@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids {
+namespace Asteroids {
 
     internal sealed class EnemyAttack : MonoBehaviour {
 
@@ -21,6 +21,11 @@ namespace Game.Asteroids {
         
         private float _timeDirectionDuration;
         private bool _rightDirection;
+
+        private void Awake() {
+            var randomRotation = UnityEngine.Random.Range(0.0f, 360.0f);
+            _pivot.rotation = Quaternion.Euler(0.0f, 0.0f, randomRotation);
+        }
 
         private void Start() {
             StartCoroutine(CO_Attack());

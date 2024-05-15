@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8810525656840607342}
   - component: {fileID: 663992303273094450}
   m_Layer: 0
-  m_Name: Destruction Player
+  m_Name: Player Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

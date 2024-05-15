@@ -1,4 +1,7 @@
 
-internal interface IScore {
-    public void SendScore();
+namespace Asteroids {
+    
+    internal interface IScore {
+        public void SendScore();
+    }
 }
