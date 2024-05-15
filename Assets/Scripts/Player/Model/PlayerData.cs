@@ -20,9 +20,7 @@ namespace Game.Asteroids {
             GameLifeCycle.OnGameStart += OnGameStart;
             PlayerController.OnPlayerDeath += DecreaseLives;
 
-            NormalEnemy.OnScoreSent += ModifyScore;
-
-            LiveEnemy.OnScoreSent += ModifyScore;
+            Enemy.OnScoreSent += ModifyScore;
             LiveEnemy.OnLiveSent += IncreaseLives;
 
             Asteroid.OnScoreSent += ModifyScore;
@@ -35,9 +33,7 @@ namespace Game.Asteroids {
             GameLifeCycle.OnGameStart -= OnGameStart;
             PlayerController.OnPlayerDeath -= DecreaseLives;
 
-            NormalEnemy.OnScoreSent -= ModifyScore;
-
-            LiveEnemy.OnScoreSent -= ModifyScore;
+            Enemy.OnScoreSent -= ModifyScore;
             LiveEnemy.OnLiveSent -= IncreaseLives;
 
             Asteroid.OnScoreSent -= ModifyScore;

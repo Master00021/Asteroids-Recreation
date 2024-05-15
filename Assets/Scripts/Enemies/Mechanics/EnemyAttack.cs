@@ -8,22 +8,24 @@ namespace Game.Asteroids {
 
         public static Action OnAttack;
         
-        [SerializeField] private float _rotationSpeed;
-        [SerializeField] private float _minTimeDirectionDuration;
-        [SerializeField] private float _maxTimeDirectionDuration;
+        [Header("Bullet")]
+        [SerializeField] private GameObject _bullet;
         [SerializeField] private Transform _bulletSpawn;
         [SerializeField] private Transform _pivot;
-        
-        [SerializeField] private float _timeToAttack;
-        [SerializeField] private GameObject _bullet;
 
+        [Header("Configuration")]
+        [SerializeField] private float _timeToAttack;
+        [SerializeField] private float _rotationSpeed;
+        [SerializeField] private float _minRotationDirectionTime;
+        [SerializeField] private float _maxRotationDirectionTime;
+        
         private float _timeDirectionDuration;
         private bool _rightDirection;
 
         private void Start() {
+            StartCoroutine(CO_Attack());
             StartCoroutine(CO_Rotate());
             StartCoroutine(CO_ChangeDirection());
-            StartCoroutine(CO_Attack());
         }
 
         private IEnumerator CO_Attack() {
@@ -56,17 +58,12 @@ namespace Game.Asteroids {
 
                 if (_timeDirectionDuration <= 0.0f) {
                     _rightDirection = !_rightDirection;
-                    RandomNumber();
+                    _timeDirectionDuration = UnityEngine.Random.Range(_minRotationDirectionTime, _maxRotationDirectionTime);
                 }
 
                 yield return null;
             }
         }
 
-        private void RandomNumber() {
-            _timeDirectionDuration = UnityEngine.Random.Range(_minTimeDirectionDuration, _maxTimeDirectionDuration);
-        }
-
     }
 }
-

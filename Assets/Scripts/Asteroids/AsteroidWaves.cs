@@ -6,7 +6,7 @@ namespace Game.Asteroids {
 
     internal sealed class AsteroidWaves : MonoBehaviour {
 
-        public static Action OnNewWave;
+        public static Action OnWaveStart;
         public static Action OnWaveEnd;
 
         [SerializeField] private GameObject _asteroid;
@@ -28,17 +28,17 @@ namespace Game.Asteroids {
             AsteroidDeathHandler.OnDeath -= CheckCurrentWave;
         }
 
+        private void StartWave() {
+            _asteroidsToSpawn = _firstWaveAsteroids;
+            StartCoroutine(CO_WaitForNextWave());
+        }
+
         private void CheckCurrentWave() {
             var currentAsteroids = FindObjectsOfType<Asteroid>();
             if (currentAsteroids.Length <= 1) {
                 OnWaveEnd?.Invoke();
                 StartCoroutine(CO_WaitForNextWave());
             }
-        }
-
-        private void StartWave() {
-            _asteroidsToSpawn = _firstWaveAsteroids;
-            StartCoroutine(CO_WaitForNextWave());
         }
 
         private IEnumerator CO_WaitForNextWave() {
@@ -63,7 +63,7 @@ namespace Game.Asteroids {
                 _asteroidsToSpawn = _maxAsteroidsToSpawn;
             }
             
-            OnNewWave?.Invoke();
+            OnWaveStart?.Invoke();
         }
 
     }

@@ -16,13 +16,13 @@ namespace Game.Asteroids {
         private bool _leftPointSpawn;
 
         private void OnEnable() {
-            AsteroidWaves.OnNewWave += StartEnemySpawn;
+            AsteroidWaves.OnWaveStart += StartEnemySpawn;
             AsteroidWaves.OnWaveEnd += StopSpawner;
             PlayerData.OnGameOver += StopSpawner;
         }
 
         private void OnDisable() {
-            AsteroidWaves.OnNewWave -= StartEnemySpawn;
+            AsteroidWaves.OnWaveStart -= StartEnemySpawn;
             AsteroidWaves.OnWaveEnd -= StopSpawner;
             PlayerData.OnGameOver -= StopSpawner;
         }
@@ -57,10 +57,10 @@ namespace Game.Asteroids {
                 }
 
                 if (_leftPointSpawn) {
-                    enemy.GetComponent<EnemyMove>()._spawnLocation = SpawnLocation.Right;
+                    enemy.GetComponent<EnemyMove>()._moveDirection = transform.right;
                 }
                 else {
-                    enemy.GetComponent<EnemyMove>()._spawnLocation = SpawnLocation.Left;
+                    enemy.GetComponent<EnemyMove>()._moveDirection = -transform.right;
                 }
 
                 yield return null;

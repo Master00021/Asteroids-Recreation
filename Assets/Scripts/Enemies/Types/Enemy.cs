@@ -1,13 +1,12 @@
 using UnityEngine;
 using System;
 
-namespace Game.Asteroids{
+namespace Game.Asteroids {
 
-    internal sealed class LiveEnemy : MonoBehaviour, IEnemy, ILiveEnemy {
+    internal class Enemy : MonoBehaviour, IEnemy {
 
         public static Action OnEnemyDeath;
         public static Action<int> OnScoreSent;
-        public static Action OnLiveSent;
 
         [SerializeField] private GameObject _deathParticles;
         [SerializeField] private int _scoreToGive;
@@ -25,10 +24,6 @@ namespace Game.Asteroids{
 
         public void SendScore() {
             OnScoreSent?.Invoke(_scoreToGive);
-        }
-
-        public void SendLive() {
-            OnLiveSent?.Invoke();
         }
 
         public void Death() {

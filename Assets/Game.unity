@@ -1356,7 +1356,6 @@ MonoBehaviour:
   - {fileID: 947980167}
   - {fileID: 48342763}
   - {fileID: 979405814}
-  _life: {fileID: 7814640542413630652, guid: 374281b6bc3c52f4e82118adc3530c81, type: 3}
   _score: {fileID: 214214557}
 --- !u!1 &947980167
 GameObject:

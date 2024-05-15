@@ -13,9 +13,9 @@ namespace Game.Asteroids {
         }
 
         private IEnumerator CO_Movement() {
-            var randomRotation = UnityEngine.Random.Range(1.0f, 360.0f);
+            var randomRotation = Random.Range(1.0f, 360.0f);
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, randomRotation);
-            var speed = UnityEngine.Random.Range(_minSpeed, _maxSpeed);
+            var speed = Random.Range(_minSpeed, _maxSpeed);
 
             while (true) {
                 transform.position += transform.up * speed * Time.deltaTime;
@@ -26,4 +26,3 @@ namespace Game.Asteroids {
 
     }
 }
-

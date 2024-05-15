@@ -96,10 +96,11 @@ GameObject:
   - component: {fileID: 298942645055855003}
   - component: {fileID: 7733733733845450309}
   - component: {fileID: 3257337975572508253}
-  - component: {fileID: 407708324496329833}
+  - component: {fileID: 5405847904997392622}
   - component: {fileID: 1384185158928353388}
   - component: {fileID: 4278607981133355467}
   - component: {fileID: 1150695941219198951}
+  - component: {fileID: 7882308454881999295}
   m_Layer: 0
   m_Name: ShooterEnemy
   m_TagString: Enemy
@@ -292,7 +293,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &407708324496329833
+--- !u!114 &5405847904997392622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,7 +302,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2533022900913655385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069c5bde1d0fefb4cbafe16b48fb25c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 269e8390e9fdd404d8839cc40b418fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _deathParticles: {fileID: 8485656474370877246, guid: 5bcbc7ec5beece148abbfafa35bb64e7, type: 3}
@@ -318,8 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99872c6f26054df4385201cd90d448d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalEnemy: 1
-  _rigidbody: {fileID: 3257337975572508253}
   _minSpeed: 1
   _maxSpeed: 2
 --- !u!114 &4278607981133355467
@@ -334,13 +333,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6fef1d8f11b0d4b9fe6e6ef3fee898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 75
-  _minTimeDirectionDuration: 1
-  _maxTimeDirectionDuration: 5
+  _bullet: {fileID: 7707139661779529434, guid: 68cf15d0e70516142b56d076377f1f88, type: 3}
   _bulletSpawn: {fileID: 8724399188215465960}
   _pivot: {fileID: 5384232984636034562}
   _timeToAttack: 0.5
-  _bullet: {fileID: 7707139661779529434, guid: 68cf15d0e70516142b56d076377f1f88, type: 3}
+  _rotationSpeed: 75
+  _minRotationDirectionTime: 0
+  _maxRotationDirectionTime: 0
 --- !u!114 &1150695941219198951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,8 +353,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 298942645055855003}
-  _enemyMusic: {fileID: 8300000, guid: 9a8234b07e3e64e4599eeef0521233c0, type: 3}
   _bulletSound: {fileID: 8300000, guid: bcae3b18b5b635f468045d8695ce296e, type: 3}
+  _enemyMusic: {fileID: 8300000, guid: 9a8234b07e3e64e4599eeef0521233c0, type: 3}
+--- !u!114 &7882308454881999295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2533022900913655385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5617947955db50d42961cb77039ad126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpeed: 1
+  _maxSpeed: 2
+  _rigidbody: {fileID: 3257337975572508253}
 --- !u!1 &2967412515101023416
 GameObject:
   m_ObjectHideFlags: 0

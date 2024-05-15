@@ -23,7 +23,7 @@ namespace Game.Asteroids {
             PlayerData.OnLivesDecreased += PauseMusic;
             PlayerData.OnGameOver += StopMusic;
 
-            AsteroidWaves.OnNewWave += StartMusic;
+            AsteroidWaves.OnWaveStart += StartMusic;
             AsteroidWaves.OnWaveEnd += StopMusic;
         }
 
@@ -32,7 +32,7 @@ namespace Game.Asteroids {
             PlayerData.OnLivesDecreased -= PauseMusic;
             PlayerData.OnGameOver -= StopMusic;
             
-            AsteroidWaves.OnNewWave -= StartMusic;
+            AsteroidWaves.OnWaveStart -= StartMusic;
             AsteroidWaves.OnWaveEnd -= StopMusic;
         }
 

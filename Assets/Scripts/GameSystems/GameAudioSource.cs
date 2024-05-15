@@ -9,12 +9,12 @@ namespace Game.Asteroids {
 
         private void OnEnable() {
             AsteroidDeathHandler.OnPlayDeathSound += PlayAsteroidDeathSound;
-            NormalEnemy.OnEnemyDeath += PlayEnemyDeathSound;
+            Enemy.OnEnemyDeath += PlayEnemyDeathSound;
         }
 
         private void OnDisable() {
             AsteroidDeathHandler.OnPlayDeathSound -= PlayAsteroidDeathSound;
-            NormalEnemy.OnEnemyDeath -= PlayEnemyDeathSound;
+            Enemy.OnEnemyDeath -= PlayEnemyDeathSound;
         }
 
         private void PlayAsteroidDeathSound(AudioClip audioClip) {
