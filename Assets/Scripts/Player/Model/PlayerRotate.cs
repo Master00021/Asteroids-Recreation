@@ -11,25 +11,19 @@ namespace Asteroids {
 
         private Quaternion _currentRotation;
         private float _direction;        
-        private bool _rotate;
 
         private void OnDisable() {  
             OnPlayerDeath?.Invoke(_currentRotation);
         }
 
         private void Update() {
-            if (_rotate) {
-                
-                float rotationAmount = -_direction * _speed * Time.deltaTime;
-                transform.Rotate(Vector3.forward, rotationAmount);
-            }
-
+            float rotationAmount = -_direction * _speed * Time.deltaTime;
+            transform.Rotate(Vector3.forward, rotationAmount);
             _currentRotation = transform.rotation;
         }
 
-        public void IsRotating(float direction) {
+        public void GetRotationDirection(float direction) {
             _direction = direction;
-            _rotate = !_rotate;
         }
 
     }

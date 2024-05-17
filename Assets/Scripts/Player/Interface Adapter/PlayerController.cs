@@ -21,7 +21,7 @@ namespace Asteroids {
         }
 
         private void Rotate(float direction) {
-            _playerRotate.IsRotating(direction);
+            _playerRotate.GetRotationDirection(direction);
         }
 
         private void Move() {

@@ -18,7 +18,7 @@ MonoBehaviour:
   OverrideChannel: 0
   Channel: 
   OverrideVersion: 1
-  Version: 1.2.3
+  Version: 1.2.4
   OverrideBuildDirectory: 0
   BuildDirectory: 
   ConfirmUpload: 1
