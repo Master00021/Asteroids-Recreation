@@ -13,16 +13,13 @@ namespace Asteroids {
         private float _direction;        
         private bool _rotate;
 
-        private void OnEnable() {
-            _rotate = false;
-        }
-
         private void OnDisable() {  
             OnPlayerDeath?.Invoke(_currentRotation);
         }
 
         private void Update() {
             if (_rotate) {
+                
                 float rotationAmount = -_direction * _speed * Time.deltaTime;
                 transform.Rotate(Vector3.forward, rotationAmount);
             }

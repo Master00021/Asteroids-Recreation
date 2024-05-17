@@ -5,14 +5,14 @@ namespace Asteroids {
 
     internal sealed class PlayerAttack : MonoBehaviour {
 
-        public static Action OnFire;
+        public static Action OnAttack;
 
         [SerializeField] private GameObject _bullet;
         [SerializeField] private Transform _spawn;
 
         public void Attack() {
             Instantiate(_bullet, _spawn.position, transform.rotation);
-            OnFire?.Invoke();
+            OnAttack?.Invoke();
         }
 
     }

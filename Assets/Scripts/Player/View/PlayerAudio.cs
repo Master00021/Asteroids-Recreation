@@ -16,12 +16,12 @@ namespace Asteroids {
             _play = false;
             StartCoroutine(CO_MoveAnimation());
 
-            PlayerAttack.OnFire += PlayFire;
+            PlayerAttack.OnAttack += PlayFire;
             PlayerMove.OnMove += PlayMove;
         }
 
         private void OnDisable() {
-            PlayerAttack.OnFire -= PlayFire;
+            PlayerAttack.OnAttack -= PlayFire;
             PlayerMove.OnMove -= PlayMove;
         }
 

@@ -45,13 +45,13 @@ namespace Asteroids {
             }
         }
 
-        internal void IncreaseLives() {
+        private void IncreaseLives() {
             _lives++;
             
             OnLivesIncreased?.Invoke();
         }
 
-        internal void DecreaseLives() {
+        private void DecreaseLives() {
             _lives--;
 
             if (_lives <= 0) {
@@ -62,7 +62,7 @@ namespace Asteroids {
             OnLivesDecreased?.Invoke();
         }
 
-        internal void ModifyScore(int score) {
+        private void ModifyScore(int score) {
             _score += score;
 
             OnScoreModified?.Invoke(_score);
